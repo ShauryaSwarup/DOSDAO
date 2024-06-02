@@ -1,0 +1,104 @@
+.wrapper {
+  position: relative;
+  padding-top: 180px; /* Use rem if needed, e.g., 11.25rem for 180px */
+  padding-bottom: 130px; /* Use rem if needed, e.g., 8.125rem for 130px */
+  background-image: url(https://images.unsplash.com/photo-1573164713988-8665fc963095?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=980&q=80);
+  background-size: cover;
+  background-position: center;
+
+  @media (max-width: var(--mantine-breakpoint-xs)) {
+    padding-top: 80px; /* Use rem if needed, e.g., 5rem for 80px */
+    padding-bottom: 50px; /* Use rem if needed, e.g., 3.125rem for 50px */
+  }
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-weight: 800;
+  font-size: 40px; /* Use rem if needed, e.g., 2.5rem for 40px */
+  letter-spacing: -1px; /* Use rem if needed, e.g., -0.0625rem for -1px */
+  padding-left: var(--mantine-spacing-md);
+  padding-right: var(--mantine-spacing-md);
+  margin-bottom: var(--mantine-spacing-xs);
+  text-align: center;
+  font-family:
+    Greycliff CF,
+    var(--mantine-font-family);
+
+  @media (max-width: var(--mantine-breakpoint-xs)) {
+    font-size: 28px; /* Use rem if needed, e.g., 1.75rem for 28px */
+    text-align: left;
+  }
+}
+
+.title1 {
+  font-weight: 600;
+  font-size: 30px; /* Use rem if needed, e.g., 1.875rem for 30px */
+  letter-spacing: -1px; /* Use rem if needed, e.g., -0.0625rem for -1px */
+  padding-left: var(--mantine-spacing-md);
+  padding-right: var(--mantine-spacing-md);
+  margin-bottom: var(--mantine-spacing-xs);
+  text-align: center;
+  font-family:
+    Greycliff CF,
+    var(--mantine-font-family);
+
+  @media (max-width: var(--mantine-breakpoint-xs)) {
+    font-size: 28px; /* Use rem if needed, e.g., 1.75rem for 28px */
+    text-align: left;
+  }
+}
+
+.highlight {
+  color: var(--mantine-color-primary-4);
+}
+
+.description {
+  text-align: center;
+
+  @media (max-width: var(--mantine-breakpoint-xs)) {
+    font-size: var(--mantine-font-size-md);
+    text-align: left;
+  }
+}
+
+.controls {
+  margin-top: calc(var(--mantine-spacing-xl) * 1.5);
+  display: flex;
+  justify-content: center;
+  padding-left: var(--mantine-spacing-md);
+  padding-right: var(--mantine-spacing-md);
+
+  @media (max-width: var(--mantine-breakpoint-xs)) {
+    flex-direction: column;
+  }
+}
+
+.control {
+  height: 42px; /* Use rem if needed, e.g., 2.625rem for 42px */
+  font-size: var(--mantine-font-size-md);
+
+  &:not(:first-of-type) {
+    margin-left: var(--mantine-spacing-md);
+  }
+
+  @media (max-width: var(--mantine-breakpoint-xs)) {
+    &:not(:first-of-type) {
+      margin-top: var(--mantine-spacing-md);
+      margin-left: 0;
+    }
+  }
+}
+
+.secondaryControl {
+  color: var(--mantine-color-white);
+  background-color: rgba(255, 255, 255, 0.4);
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.45);
+  }
+}
