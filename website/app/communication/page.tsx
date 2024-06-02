@@ -4,7 +4,7 @@ import { useAccount } from "wagmi";
 // import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 // import { setUser } from "@/redux/slice/pushSlice";
-import { initUser } from "@/functions/initUser.js";
+import { initUser } from "@/functions/initUser";
 import "./styles.css";
 import { useListState } from "@mantine/hooks";
 import Link from "next/link";
