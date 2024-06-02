@@ -2672,7 +2672,7 @@
     prosemirror-transform "^1.8.0"
     prosemirror-view "^1.32.7"
 
-"@tiptap/react@>=2.1.12":
+"@tiptap/react@^2.4.0", "@tiptap/react@>=2.1.12":
   version "2.4.0"
   resolved "https://registry.npmjs.org/@tiptap/react/-/react-2.4.0.tgz"
   integrity sha512-baxnIr6Dy+5iGagOEIKFeHzdl1ZRa6Cg+SJ3GDL/BVLpO6KiCM3Mm5ymB726UKP1w7icrBiQD2fGY3Bx8KaiSA==
