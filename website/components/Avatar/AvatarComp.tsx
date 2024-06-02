@@ -1,4 +1,4 @@
-import { UnstyledButton, Group, Avatar, importrt } from "@mantine/core";
+import { UnstyledButton, Group, Avatar, Text } from "@mantine/core";
 import classes from "./UserButton.module.css";
 export function AvatarComp({
   wallet_id,
@@ -16,13 +16,13 @@ export function AvatarComp({
         />
 
         <div style={{ flex: 1 }}>
-          <importrt size="sm" fw={500} className="hover:underline">
+          <Text size="sm" fw={500} className="hover:underline">
             ~ by {researcher_name}
-          </importrt>
+          </Text>
 
-          <importrt c="dimmed" size="xs">
+          <Text c="dimmed" size="xs">
             {wallet_id}
-          </importrt>
+          </Text>
         </div>
 
         {/* <IconChevronRight
