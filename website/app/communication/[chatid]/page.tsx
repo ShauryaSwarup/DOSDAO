@@ -65,7 +65,7 @@ const fetchSubs = async (user: PushAPI) => {
   return subChannels;
 };
 
-const GroupChat = (context: GetServerSidePropsContext) => {
+const GroupChat = (context: any) => {
   const { chatid } = context.params as { chatid: string };
 
   const account = useAccount();
