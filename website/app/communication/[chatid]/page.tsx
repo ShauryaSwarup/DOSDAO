@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { initUser } from "@/functions/initUser";
 import "./styles.css";
 import { GroupDTO, GroupInfoDTO, IFeeds, PushAPI } from "@pushprotocol/restapi";
-import { Notification } from "@pushprotocol/restapi/src/lib/pushNotification/notification";
+import { GetServerSidePropsContext } from "next";
 
 const fetchChats = async (user: PushAPI) => {
   const chats = await user.chat.list("CHATS");
@@ -27,7 +27,7 @@ const fetchChatHistory = async (chatId: any, user: PushAPI) => {
   return history;
 };
 
-const sendMessage = async (chatId: any, content: any, user: PushAPI) => {
+const sendMessage = async (chatId: string, content: any, user: PushAPI) => {
   console.log("Sending text");
   const txt = await user.chat.send(chatId, {
     type: "Text",
@@ -65,8 +65,8 @@ const fetchSubs = async (user: PushAPI) => {
   return subChannels;
 };
 
-const GroupChat = ({ params }: { params: any }) => {
-  const chatId = params.chatId;
+const GroupChat = (context: GetServerSidePropsContext) => {
+  const { chatid } = context.params as { chatid: string };
 
   const account = useAccount();
   // const dispatch = useDispatch();
@@ -86,6 +86,7 @@ const GroupChat = ({ params }: { params: any }) => {
 
     const fetchData = async () => {
       try {
+        console.log(chatid);
         if (!signer || !account) return;
 
         if (!user) {
@@ -97,14 +98,14 @@ const GroupChat = ({ params }: { params: any }) => {
         }
 
         if (!chat && user) {
-          const groupInfo = await user.chat.group.info(chatId);
+          const groupInfo = await user.chat.group.info(chatid);
           if (isMounted && groupInfo) {
             setChat(groupInfo);
           }
 
           const fetchChatHistoryData = async () => {
             try {
-              const chatHistory = await fetchChatHistory(chatId, user);
+              const chatHistory = await fetchChatHistory(chatid, user);
               setHistory(chatHistory);
             } catch (error) {
               console.error("Error fetching chat history:", error);
@@ -135,7 +136,7 @@ const GroupChat = ({ params }: { params: any }) => {
     return () => {
       isMounted = false;
     };
-  }, [account, signer, chatId, user, chat]); // Added 'chat' to dependencies
+  }, [account, signer, chatid, user, chat]); // Added 'chat' to dependencies
 
   // Rest of the component code remains the same
 
@@ -146,9 +147,9 @@ const GroupChat = ({ params }: { params: any }) => {
   const sendMessageText = async () => {
     if (!user) return;
 
-    const res = await sendMessage(chatId, message, user);
+    const res = await sendMessage(chatid, message, user);
 
-    const updatedHistory = await user.chat.history(chatId);
+    const updatedHistory = await user.chat.history(chatid);
     setHistory(updatedHistory);
 
     setMessage("");
@@ -156,15 +157,15 @@ const GroupChat = ({ params }: { params: any }) => {
 
   const handleJoinGroup = async () => {
     if (!user) return;
-    console.log(chatId);
-    const res = await joinGroup(user, chatId);
+    console.log(chatid);
+    const res = await joinGroup(user, chatid);
     console.log("Joined group:", res);
   };
 
   const handleFetchHistory = async () => {
     if (!user) return;
 
-    const res = await fetchChatHistory(chatId, user);
+    const res = await fetchChatHistory(chatid, user);
     setHistory(res);
   };
 
@@ -191,7 +192,7 @@ const GroupChat = ({ params }: { params: any }) => {
           <button className="btn btn-info m-2" onClick={handleFetchChats}>
             Fetch Chats
           </button>
-          {chatId && (
+          {chatid && (
             <button className="btn btn-info m-2" onClick={handleJoinGroup}>
               Join Group
             </button>
